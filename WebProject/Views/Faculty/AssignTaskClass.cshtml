@@ -1,0 +1,104 @@
+﻿@model WebProject.ViewModel.AssignTaskClassModel
+
+@{
+    ViewBag.Title = "AssignTaskClass";
+    Layout = "~/Views/Shared/_FacultyLayout.cshtml";
+}
+<script>
+    function getSubList() {
+        debugger;
+        var sem = $("#sem").val();
+        $.ajax
+            ({
+                url: '/Faculty/GetSub',
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    sem: +sem
+                }),
+                success: function (result) {
+                    $("#sub").html("");
+                    $.each($.parseJSON(result), function (i, value) {
+                        $("#sub").append($('<option></option>').val(value).html(value))
+                    })
+
+                },
+                error: function () {
+                    alert("Something went wrong..")
+                },
+            });
+    }
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Label("sem", "Semester")
+    <div class="row form-group">
+        <select id="sem" name="sem" class="form-control" onchange="getSubList()">
+            @foreach (var item in Model.sem)
+            {
+                <option>@item</option>
+            }
+        </select>
+    </div>
+    @Html.ValidationMessage("sem", "", new { @class = "text-danger" })
+    @Html.Label("Subject")
+    <div class="row form-group">
+        <select id="sub" name="sub" class="form-control">
+            @foreach (var item in Model.sub)
+            {
+                <option>@item</option>
+            }
+        </select>
+    </div>
+    @Html.ValidationMessage("sub", "", new { @class = "text-danger" })
+
+
+
+    @Html.Label("Title")
+    @Html.TextBox("Title", "", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessage("Title", "", new { @class = "text-danger" })
+
+    @Html.Label("Description")
+    @Html.TextArea("Description", "", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessage("Description", "", new { @class = "text-danger" })
+
+    @Html.Label("grade", "Marks")
+    @Html.TextBox("grade", "", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessage("grade", "", new { @class = "text-danger" })
+
+    @Html.Label("TFS", "Time For Submition(In Days)")
+    @Html.TextBox("TFS", "", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessage("TFS", "", new { @class = "text-danger" })
+
+
+    <div class="row form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+}
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>Description</th>
+                <th>grade</th>
+                <th>sub</th>
+                <th>endDate</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.assign_Tasks)
+        {
+            <tr>
+                <td>@item.title</td>
+                <td>@item.Description</td>
+                <td>@item.grade</td>
+                <td>@item.sub</td>
+                <td>@item.endDate</td>
+            </tr>
+        }
+    </table>
+</div>
+

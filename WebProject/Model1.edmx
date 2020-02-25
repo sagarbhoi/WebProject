@@ -1,0 +1,653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StudentEvolutionSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="assignFacSubBatches">
+          <Key>
+            <PropertyRef Name="facSubBatchPracId" />
+          </Key>
+          <Property Name="facSubBatchPracId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="facId" Type="int" Nullable="false" />
+          <Property Name="classId" Type="int" Nullable="false" />
+          <Property Name="batch" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sem" Type="int" />
+          <Property Name="sub" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="assignFacSubs">
+          <Key>
+            <PropertyRef Name="facSubId" />
+          </Key>
+          <Property Name="facSubId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="facId" Type="int" Nullable="false" />
+          <Property Name="sub" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="classId" Type="int" Nullable="false" />
+          <Property Name="sem" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="assignTaskPracs">
+          <Key>
+            <PropertyRef Name="taskPracId" />
+          </Key>
+          <Property Name="taskPracId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="classId" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="grade" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="sub" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="isAssign" Type="int" Nullable="false" />
+          <Property Name="sem" Type="int" Nullable="false" />
+          <Property Name="facId" Type="int" Nullable="false" />
+          <Property Name="batch" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="assignTasks">
+          <Key>
+            <PropertyRef Name="taskId" />
+          </Key>
+          <Property Name="taskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="classId" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="grade" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="sub" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="isAssign" Type="int" Nullable="false" />
+          <Property Name="sem" Type="int" Nullable="false" />
+          <Property Name="facId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="batchElectives">
+          <Key>
+            <PropertyRef Name="classId" />
+            <PropertyRef Name="batch" />
+            <PropertyRef Name="electiveSub" />
+          </Key>
+          <Property Name="classId" Type="int" Nullable="false" />
+          <Property Name="batch" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="electiveSub" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="facultyLogins">
+          <Key>
+            <PropertyRef Name="facId" />
+          </Key>
+          <Property Name="facId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contactNo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mentorLogins">
+          <Key>
+            <PropertyRef Name="mentorId" />
+          </Key>
+          <Property Name="mentorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="classId" Type="int" Nullable="false" />
+          <Property Name="facId" Type="int" Nullable="false" />
+          <Property Name="sem" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sa_Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="semSubs">
+          <Key>
+            <PropertyRef Name="semSubId" />
+          </Key>
+          <Property Name="semSubId" Type="int" Nullable="false" />
+          <Property Name="sem" Type="int" Nullable="false" />
+          <Property Name="subject" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="subCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isElective" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studentBatches">
+          <Key>
+            <PropertyRef Name="enroId" />
+            <PropertyRef Name="batch" />
+            <PropertyRef Name="classId" />
+          </Key>
+          <Property Name="enroId" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="batch" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="classId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studentLogins">
+          <Key>
+            <PropertyRef Name="studentId" />
+          </Key>
+          <Property Name="studentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="enroId" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contactNo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="classId" Type="int" Nullable="false" />
+          <Property Name="sem" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_assignFacSub_facultyLogin">
+          <End Role="facultyLogins" Type="Self.facultyLogins" Multiplicity="1" />
+          <End Role="assignFacSubs" Type="Self.assignFacSubs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultyLogins">
+              <PropertyRef Name="facId" />
+            </Principal>
+            <Dependent Role="assignFacSubs">
+              <PropertyRef Name="facId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_assignFacSubBatch_facultyLogin">
+          <End Role="facultyLogins" Type="Self.facultyLogins" Multiplicity="1" />
+          <End Role="assignFacSubBatches" Type="Self.assignFacSubBatches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultyLogins">
+              <PropertyRef Name="facId" />
+            </Principal>
+            <Dependent Role="assignFacSubBatches">
+              <PropertyRef Name="facId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_assignTask_facultyLogin">
+          <End Role="facultyLogins" Type="Self.facultyLogins" Multiplicity="1" />
+          <End Role="assignTasks" Type="Self.assignTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultyLogins">
+              <PropertyRef Name="facId" />
+            </Principal>
+            <Dependent Role="assignTasks">
+              <PropertyRef Name="facId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_assignTaskPrac_facultyLogin">
+          <End Role="facultyLogins" Type="Self.facultyLogins" Multiplicity="1" />
+          <End Role="assignTaskPracs" Type="Self.assignTaskPracs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultyLogins">
+              <PropertyRef Name="facId" />
+            </Principal>
+            <Dependent Role="assignTaskPracs">
+              <PropertyRef Name="facId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mentorLogin_facultyLogin">
+          <End Role="facultyLogins" Type="Self.facultyLogins" Multiplicity="1" />
+          <End Role="mentorLogins" Type="Self.mentorLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultyLogins">
+              <PropertyRef Name="facId" />
+            </Principal>
+            <Dependent Role="mentorLogins">
+              <PropertyRef Name="facId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StudentEvolutionSystemModelStoreContainer">
+          <EntitySet Name="assignFacSubBatches" EntityType="Self.assignFacSubBatches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="assignFacSubs" EntityType="Self.assignFacSubs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="assignTaskPracs" EntityType="Self.assignTaskPracs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="assignTasks" EntityType="Self.assignTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="batchElectives" EntityType="Self.batchElectives" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="facultyLogins" EntityType="Self.facultyLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mentorLogins" EntityType="Self.mentorLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sa_Login" EntityType="Self.sa_Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="semSubs" EntityType="Self.semSubs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="studentBatches" EntityType="Self.studentBatches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="studentLogins" EntityType="Self.studentLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_assignFacSub_facultyLogin" Association="Self.FK_assignFacSub_facultyLogin">
+            <End Role="facultyLogins" EntitySet="facultyLogins" />
+            <End Role="assignFacSubs" EntitySet="assignFacSubs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_assignFacSubBatch_facultyLogin" Association="Self.FK_assignFacSubBatch_facultyLogin">
+            <End Role="facultyLogins" EntitySet="facultyLogins" />
+            <End Role="assignFacSubBatches" EntitySet="assignFacSubBatches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_assignTask_facultyLogin" Association="Self.FK_assignTask_facultyLogin">
+            <End Role="facultyLogins" EntitySet="facultyLogins" />
+            <End Role="assignTasks" EntitySet="assignTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_assignTaskPrac_facultyLogin" Association="Self.FK_assignTaskPrac_facultyLogin">
+            <End Role="facultyLogins" EntitySet="facultyLogins" />
+            <End Role="assignTaskPracs" EntitySet="assignTaskPracs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mentorLogin_facultyLogin" Association="Self.FK_mentorLogin_facultyLogin">
+            <End Role="facultyLogins" EntitySet="facultyLogins" />
+            <End Role="mentorLogins" EntitySet="mentorLogins" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudentEvolutionSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="assignFacSubBatch">
+          <Key>
+            <PropertyRef Name="facSubBatchPracId" />
+          </Key>
+          <Property Name="facSubBatchPracId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="facId" Type="Int32" Nullable="false" />
+          <Property Name="classId" Type="Int32" Nullable="false" />
+          <Property Name="batch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sem" Type="Int32" />
+          <Property Name="sub" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="facultyLogin" Relationship="Self.FK_assignFacSubBatch_facultyLogin" FromRole="assignFacSubBatches" ToRole="facultyLogins" />
+        </EntityType>
+        <EntityType Name="assignFacSub">
+          <Key>
+            <PropertyRef Name="facSubId" />
+          </Key>
+          <Property Name="facSubId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="facId" Type="Int32" Nullable="false" />
+          <Property Name="sub" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="classId" Type="Int32" Nullable="false" />
+          <Property Name="sem" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="facultyLogin" Relationship="Self.FK_assignFacSub_facultyLogin" FromRole="assignFacSubs" ToRole="facultyLogins" />
+        </EntityType>
+        <EntityType Name="assignTaskPrac">
+          <Key>
+            <PropertyRef Name="taskPracId" />
+          </Key>
+          <Property Name="taskPracId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="classId" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="grade" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="sub" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isAssign" Type="Int32" Nullable="false" />
+          <Property Name="sem" Type="Int32" Nullable="false" />
+          <Property Name="facId" Type="Int32" Nullable="false" />
+          <Property Name="batch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="facultyLogin" Relationship="Self.FK_assignTaskPrac_facultyLogin" FromRole="assignTaskPracs" ToRole="facultyLogins" />
+        </EntityType>
+        <EntityType Name="assignTask">
+          <Key>
+            <PropertyRef Name="taskId" />
+          </Key>
+          <Property Name="taskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="classId" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="grade" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="sub" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isAssign" Type="Int32" Nullable="false" />
+          <Property Name="sem" Type="Int32" Nullable="false" />
+          <Property Name="facId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="facultyLogin" Relationship="Self.FK_assignTask_facultyLogin" FromRole="assignTasks" ToRole="facultyLogins" />
+        </EntityType>
+        <EntityType Name="batchElective">
+          <Key>
+            <PropertyRef Name="classId" />
+            <PropertyRef Name="batch" />
+            <PropertyRef Name="electiveSub" />
+          </Key>
+          <Property Name="classId" Type="Int32" Nullable="false" />
+          <Property Name="batch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="electiveSub" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="facultyLogin">
+          <Key>
+            <PropertyRef Name="facId" />
+          </Key>
+          <Property Name="facId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="assignFacSubBatches" Relationship="Self.FK_assignFacSubBatch_facultyLogin" FromRole="facultyLogins" ToRole="assignFacSubBatches" />
+          <NavigationProperty Name="assignFacSubs" Relationship="Self.FK_assignFacSub_facultyLogin" FromRole="facultyLogins" ToRole="assignFacSubs" />
+          <NavigationProperty Name="assignTaskPracs" Relationship="Self.FK_assignTaskPrac_facultyLogin" FromRole="facultyLogins" ToRole="assignTaskPracs" />
+          <NavigationProperty Name="assignTasks" Relationship="Self.FK_assignTask_facultyLogin" FromRole="facultyLogins" ToRole="assignTasks" />
+          <NavigationProperty Name="mentorLogins" Relationship="Self.FK_mentorLogin_facultyLogin" FromRole="facultyLogins" ToRole="mentorLogins" />
+        </EntityType>
+        <EntityType Name="mentorLogin">
+          <Key>
+            <PropertyRef Name="mentorId" />
+          </Key>
+          <Property Name="mentorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="classId" Type="Int32" Nullable="false" />
+          <Property Name="facId" Type="Int32" Nullable="false" />
+          <Property Name="sem" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="facultyLogin" Relationship="Self.FK_mentorLogin_facultyLogin" FromRole="mentorLogins" ToRole="facultyLogins" />
+        </EntityType>
+        <EntityType Name="sa_Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="semSub">
+          <Key>
+            <PropertyRef Name="semSubId" />
+          </Key>
+          <Property Name="semSubId" Type="Int32" Nullable="false" />
+          <Property Name="sem" Type="Int32" Nullable="false" />
+          <Property Name="subject" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isElective" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studentBatch">
+          <Key>
+            <PropertyRef Name="enroId" />
+            <PropertyRef Name="batch" />
+            <PropertyRef Name="classId" />
+          </Key>
+          <Property Name="enroId" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="batch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="classId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studentLogin">
+          <Key>
+            <PropertyRef Name="studentId" />
+          </Key>
+          <Property Name="studentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="enroId" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="classId" Type="Int32" Nullable="false" />
+          <Property Name="sem" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_assignFacSubBatch_facultyLogin">
+          <End Role="facultyLogins" Type="Self.facultyLogin" Multiplicity="1" />
+          <End Role="assignFacSubBatches" Type="Self.assignFacSubBatch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultyLogins">
+              <PropertyRef Name="facId" />
+            </Principal>
+            <Dependent Role="assignFacSubBatches">
+              <PropertyRef Name="facId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_assignFacSub_facultyLogin">
+          <End Role="facultyLogins" Type="Self.facultyLogin" Multiplicity="1" />
+          <End Role="assignFacSubs" Type="Self.assignFacSub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultyLogins">
+              <PropertyRef Name="facId" />
+            </Principal>
+            <Dependent Role="assignFacSubs">
+              <PropertyRef Name="facId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_assignTaskPrac_facultyLogin">
+          <End Role="facultyLogins" Type="Self.facultyLogin" Multiplicity="1" />
+          <End Role="assignTaskPracs" Type="Self.assignTaskPrac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultyLogins">
+              <PropertyRef Name="facId" />
+            </Principal>
+            <Dependent Role="assignTaskPracs">
+              <PropertyRef Name="facId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_assignTask_facultyLogin">
+          <End Role="facultyLogins" Type="Self.facultyLogin" Multiplicity="1" />
+          <End Role="assignTasks" Type="Self.assignTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultyLogins">
+              <PropertyRef Name="facId" />
+            </Principal>
+            <Dependent Role="assignTasks">
+              <PropertyRef Name="facId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mentorLogin_facultyLogin">
+          <End Role="facultyLogins" Type="Self.facultyLogin" Multiplicity="1" />
+          <End Role="mentorLogins" Type="Self.mentorLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facultyLogins">
+              <PropertyRef Name="facId" />
+            </Principal>
+            <Dependent Role="mentorLogins">
+              <PropertyRef Name="facId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StudentEvolutionSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="assignFacSubBatches" EntityType="Self.assignFacSubBatch" />
+          <EntitySet Name="assignFacSubs" EntityType="Self.assignFacSub" />
+          <EntitySet Name="assignTaskPracs" EntityType="Self.assignTaskPrac" />
+          <EntitySet Name="assignTasks" EntityType="Self.assignTask" />
+          <EntitySet Name="batchElectives" EntityType="Self.batchElective" />
+          <EntitySet Name="facultyLogins" EntityType="Self.facultyLogin" />
+          <EntitySet Name="mentorLogins" EntityType="Self.mentorLogin" />
+          <EntitySet Name="sa_Login" EntityType="Self.sa_Login" />
+          <EntitySet Name="semSubs" EntityType="Self.semSub" />
+          <EntitySet Name="studentBatches" EntityType="Self.studentBatch" />
+          <EntitySet Name="studentLogins" EntityType="Self.studentLogin" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_assignFacSubBatch_facultyLogin" Association="Self.FK_assignFacSubBatch_facultyLogin">
+            <End Role="facultyLogins" EntitySet="facultyLogins" />
+            <End Role="assignFacSubBatches" EntitySet="assignFacSubBatches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_assignFacSub_facultyLogin" Association="Self.FK_assignFacSub_facultyLogin">
+            <End Role="facultyLogins" EntitySet="facultyLogins" />
+            <End Role="assignFacSubs" EntitySet="assignFacSubs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_assignTaskPrac_facultyLogin" Association="Self.FK_assignTaskPrac_facultyLogin">
+            <End Role="facultyLogins" EntitySet="facultyLogins" />
+            <End Role="assignTaskPracs" EntitySet="assignTaskPracs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_assignTask_facultyLogin" Association="Self.FK_assignTask_facultyLogin">
+            <End Role="facultyLogins" EntitySet="facultyLogins" />
+            <End Role="assignTasks" EntitySet="assignTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mentorLogin_facultyLogin" Association="Self.FK_mentorLogin_facultyLogin">
+            <End Role="facultyLogins" EntitySet="facultyLogins" />
+            <End Role="mentorLogins" EntitySet="mentorLogins" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StudentEvolutionSystemModelStoreContainer" CdmEntityContainer="StudentEvolutionSystemEntities">
+          <EntitySetMapping Name="assignFacSubBatches">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.assignFacSubBatch">
+              <MappingFragment StoreEntitySet="assignFacSubBatches">
+                <ScalarProperty Name="facSubBatchPracId" ColumnName="facSubBatchPracId" />
+                <ScalarProperty Name="facId" ColumnName="facId" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="batch" ColumnName="batch" />
+                <ScalarProperty Name="sem" ColumnName="sem" />
+                <ScalarProperty Name="sub" ColumnName="sub" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="assignFacSubs">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.assignFacSub">
+              <MappingFragment StoreEntitySet="assignFacSubs">
+                <ScalarProperty Name="facSubId" ColumnName="facSubId" />
+                <ScalarProperty Name="facId" ColumnName="facId" />
+                <ScalarProperty Name="sub" ColumnName="sub" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="sem" ColumnName="sem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="assignTaskPracs">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.assignTaskPrac">
+              <MappingFragment StoreEntitySet="assignTaskPracs">
+                <ScalarProperty Name="taskPracId" ColumnName="taskPracId" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="sub" ColumnName="sub" />
+                <ScalarProperty Name="isAssign" ColumnName="isAssign" />
+                <ScalarProperty Name="sem" ColumnName="sem" />
+                <ScalarProperty Name="facId" ColumnName="facId" />
+                <ScalarProperty Name="batch" ColumnName="batch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="assignTasks">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.assignTask">
+              <MappingFragment StoreEntitySet="assignTasks">
+                <ScalarProperty Name="taskId" ColumnName="taskId" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="sub" ColumnName="sub" />
+                <ScalarProperty Name="isAssign" ColumnName="isAssign" />
+                <ScalarProperty Name="sem" ColumnName="sem" />
+                <ScalarProperty Name="facId" ColumnName="facId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="batchElectives">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.batchElective">
+              <MappingFragment StoreEntitySet="batchElectives">
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="batch" ColumnName="batch" />
+                <ScalarProperty Name="electiveSub" ColumnName="electiveSub" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facultyLogins">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.facultyLogin">
+              <MappingFragment StoreEntitySet="facultyLogins">
+                <ScalarProperty Name="facId" ColumnName="facId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contactNo" ColumnName="contactNo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mentorLogins">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.mentorLogin">
+              <MappingFragment StoreEntitySet="mentorLogins">
+                <ScalarProperty Name="mentorId" ColumnName="mentorId" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="facId" ColumnName="facId" />
+                <ScalarProperty Name="sem" ColumnName="sem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sa_Login">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.sa_Login">
+              <MappingFragment StoreEntitySet="sa_Login">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="semSubs">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.semSub">
+              <MappingFragment StoreEntitySet="semSubs">
+                <ScalarProperty Name="semSubId" ColumnName="semSubId" />
+                <ScalarProperty Name="sem" ColumnName="sem" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="subCode" ColumnName="subCode" />
+                <ScalarProperty Name="isElective" ColumnName="isElective" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studentBatches">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.studentBatch">
+              <MappingFragment StoreEntitySet="studentBatches">
+                <ScalarProperty Name="enroId" ColumnName="enroId" />
+                <ScalarProperty Name="batch" ColumnName="batch" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studentLogins">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.studentLogin">
+              <MappingFragment StoreEntitySet="studentLogins">
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="enroId" ColumnName="enroId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contactNo" ColumnName="contactNo" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="sem" ColumnName="sem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StudentEvolutionSystemModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

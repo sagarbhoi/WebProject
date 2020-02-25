@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c2c947ba81174be296df1e9a362a4c9c" Name="Diagram1">
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.assignFacSubBatch" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.assignFacSub" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.assignTaskPrac" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.assignTask" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.batchElective" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.facultyLogin" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.mentorLogin" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.sa_Login" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.semSub" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.studentBatch" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.studentLogin" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentEvolutionSystemModel.sysdiagram" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="StudentEvolutionSystemModel.FK_assignFacSubBatch_facultyLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentEvolutionSystemModel.FK_assignFacSub_facultyLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentEvolutionSystemModel.FK_assignTaskPrac_facultyLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentEvolutionSystemModel.FK_assignTask_facultyLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentEvolutionSystemModel.FK_mentorLogin_facultyLogin" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
